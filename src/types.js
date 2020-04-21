@@ -1,0 +1,10 @@
+export const ADD_SCORE = 0;
+export const NEXT_SHAPE = 1;
+export const RESET_GAME = 2;
+export const PAUSE_GAME = 3;
+export const GAME_OVER = 4;
+export const NEXT_COLOR = 5;
+export const DISPLAY_NEXT_SHAPE = 6;
+export const RESUME_GAME = 7;
+export const START_GAME = 8;
+export const ADD_ROWS = 9;
