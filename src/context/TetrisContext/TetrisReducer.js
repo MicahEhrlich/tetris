@@ -9,6 +9,7 @@ import {
   DISPLAY_NEXT_SHAPE,
   START_GAME,
   ADD_ROWS,
+  SET_SPEED,
 } from '../../types';
 
 export default (state, action) => {
@@ -41,6 +42,7 @@ export default (state, action) => {
     case RESET_GAME:
       return {
         ...state,
+        speed: 1000,
         score: 0,
         rows: 0,
         pause: false,
@@ -69,6 +71,11 @@ export default (state, action) => {
         pause: false,
         gameOver: true,
         gameStart: false,
+      };
+    case SET_SPEED:
+      return {
+        ...state,
+        speed: action.payload,
       };
     default:
       return state;

@@ -14,11 +14,12 @@ import {
   RESUME_GAME,
   START_GAME,
   ADD_ROWS,
+  SET_SPEED,
 } from '../../types';
 
 const TetrisState = (props) => {
   const initialState = {
-    
+    speed: 1100,
     newGame: false,
     gameStart: false,
     score: 0,
@@ -59,6 +60,11 @@ const TetrisState = (props) => {
     shape.forEach((element) => {
       displayedShape[element[0]][element[1]] = [color];
     });
+    if (state.speed > 0)
+      dispatch({
+        type: SET_SPEED,
+        payload: state.speed - 10,
+      });
 
     dispatch({
       type: NEXT_SHAPE,

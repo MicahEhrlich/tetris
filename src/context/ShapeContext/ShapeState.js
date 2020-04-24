@@ -15,6 +15,7 @@ import {
   SET_COLOR,
   UPDATE_STAGE,
   SET_SHAPE,
+  HALT_MOVE,
 } from '../../types';
 
 const ShapeState = (props) => {
@@ -24,6 +25,7 @@ const ShapeState = (props) => {
     color: getRandomColor(),
     stage: [],
     shape: getRandomShape(),
+    haltMove: false,
   };
 
   const [state, dispatch] = useReducer(shapeReducer, initialState);
@@ -75,7 +77,15 @@ const ShapeState = (props) => {
     });
   };
 
+  const holtMovement = (value) => {
+    dispatch({
+      type: HALT_MOVE,
+      payload: value,
+    });
+  };
+
   const clearRows = () => {
+    holtMovement(true);
     let rowsToRemove = [];
     let newStage = state.stage;
     state.stage.forEach((row, i) => {
@@ -95,6 +105,7 @@ const ShapeState = (props) => {
     });
 
     setStage(newStage);
+    holtMovement(false);
   };
 
   const move = (newPos) => {
@@ -105,12 +116,19 @@ const ShapeState = (props) => {
     newPos.forEach((element) => {
       newStage[element[0]][element[1]] = [state.color];
     });
+    //holtMovement();
+
     setStage(newStage);
+    //holtMovement();
   };
 
   const moveShape = ({ keyCode }) => {
     if (
-      (!pause && !gameOver && keyCode >= 36 && keyCode <= 40) ||
+      (!pause &&
+        !gameOver &&
+        !state.haltMove &&
+        keyCode >= 36 &&
+        keyCode <= 40) ||
       keyCode === 160
     ) {
       let tempPos = [];
@@ -146,6 +164,8 @@ const ShapeState = (props) => {
       }
 
       if (collideDetected(tempPos, state.pos, state.stage)) {
+        holtMovement(true);
+
         if (keyCode === 40 || keyCode === 160) {
           // NEEDS TO BE 0 FOR GAME OVER
           if (tempPos[0][0] === 1) {
@@ -160,6 +180,7 @@ const ShapeState = (props) => {
             getNextShape();
           }
         }
+        holtMovement(false);
       } else {
         if (keyCode === 38)
           state.rotate === 3 ? setRotate(0) : setRotate(state.rotate + 1);
@@ -180,6 +201,7 @@ const ShapeState = (props) => {
         setShape,
         moveShape,
         clearRows,
+        holtMovement,
       }}>
       {props.children}
     </shapeContext.Provider>

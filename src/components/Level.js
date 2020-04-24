@@ -35,6 +35,7 @@ const Level = ({ level }) => {
     gameStart,
     newGame,
     pause,
+    speed
   } = tetrisContext;
 
   const {
@@ -49,7 +50,7 @@ const Level = ({ level }) => {
 
   useInterval(() => {
     if (!pause && !gameOver && gameStart) drop();
-  }, 1000);
+  }, speed);
 
   const reset = () => {
     getNextShape();

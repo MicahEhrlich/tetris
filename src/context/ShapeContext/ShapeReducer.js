@@ -4,6 +4,7 @@ import {
   SET_COLOR,
   UPDATE_STAGE,
   SET_SHAPE,
+  HALT_MOVE,
 } from '../../types';
 
 export default (state, action) => {
@@ -32,6 +33,11 @@ export default (state, action) => {
       return {
         ...state,
         stage: action.payload,
+      };
+    case HALT_MOVE:
+      return {
+        ...state,
+        haltMove: action.payload,
       };
     default:
       return state;

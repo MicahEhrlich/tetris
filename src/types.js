@@ -15,3 +15,5 @@ export const SET_COLOR = 12;
 export const MOVE_SHAPE = 13;
 export const UPDATE_STAGE = 14;
 export const SET_SHAPE = 15;
+export const SET_SPEED = 16;
+export const HALT_MOVE = 17;
