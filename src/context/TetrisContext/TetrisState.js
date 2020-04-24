@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import tetrisContext from './TetrisContext';
 import tetrisReducer from './TetrisReducer';
-import { getRandomShape, getRandomColor } from '../components/Utils';
+import { getRandomShape, getRandomColor } from '../../components/Utils';
 
 import {
   ADD_SCORE,
@@ -14,15 +14,16 @@ import {
   RESUME_GAME,
   START_GAME,
   ADD_ROWS,
-} from '../types';
+} from '../../types';
 
 const TetrisState = (props) => {
   const initialState = {
+    
     newGame: false,
     gameStart: false,
     score: 0,
     rows: 0,
-    pause: true,
+    pause: false,
     gameOver: false,
     nextShape: [],
     nextColor: '',

@@ -44,7 +44,6 @@ export const GameButton = styled.button`
   color: silver;
   border: grey 3px solid;
   text-shadow: 1px 1px 4px darkblue;
-  
 
   /* Color the border and text with theme.main */
   background-image: linear-gradient(
@@ -54,4 +53,22 @@ export const GameButton = styled.button`
     #16222a 100%
   );
   border: grey 1px solid;
+`;
+
+export const ArrowButton = styled.button`
+  margin-bottom: 5px;
+  margin-right: 5px;
+  border-radius: 3px;
+  color: silver;
+  border: grey 3px solid;
+  text-shadow: 1px 1px 4px darkblue;
+
+  /* Color the border and text with theme.main */
+  background-image: linear-gradient(
+    to right,
+    #16222a 0%,
+    #3a6073 51%,
+    #16222a 100%
+  );
+  border: grey 3px solid;
 `;

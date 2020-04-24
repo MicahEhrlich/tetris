@@ -37,13 +37,13 @@ const COLORS = [
 const SHAPES = [SHAPE_I, SHAPE_O, SHAPE_T, SHAPE_L, SHAPE_J, SHAPE_Z, SHAPE_S];
 
 export const getRandomShape = () => {
-  let randomShape = Math.floor(Math.random() * 4) + Math.floor(Math.random() * 3);
-  let shape = SHAPES[randomShape];
-  return shape;
+  let randomShape =
+    Math.floor(Math.random() * 4) + Math.floor(Math.random() * 3);
+  return SHAPES[randomShape];
 };
 
 export const getRandomColor = () => {
-  let color = 2 * Math.floor(Math.random() * 5);
+  let color = Math.floor(Math.random() * 5) + Math.floor(Math.random() * 5);
   return COLORS[color];
 };
 
@@ -231,4 +231,27 @@ export const rotateShape = (pos, shape, rotate) => {
     }
   }
   return rotatedShape;
+};
+
+export const collideDetected = (newPos, pos, stage) => {
+  let collide = false;
+  newPos.forEach((element) => {
+    if (
+      element[0] >= stage.length ||
+      element[0] < 0 ||
+      element[1] >= stage[0].length ||
+      element[1] < 0
+    ) {
+      collide = true;
+    }
+  });
+  if (collide) return collide;
+  let newStage = stage;
+  pos.forEach((element) => {
+    newStage[element[0]][element[1]] = ['black'];
+  });
+  newPos.forEach((element) => {
+    if (newStage[element[0]][element[1]][0] !== 'black') collide = true;
+  });
+  return collide;
 };
